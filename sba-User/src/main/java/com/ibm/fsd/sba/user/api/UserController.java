@@ -18,8 +18,7 @@ public class UserController {
 
     @PostMapping("/query")
     public ResponseDto<User> query(@RequestBody User user) {
-        log.error(user.toString());
-        user = userService.findUser(user);
+        user = userService.query(user);
         return ResponseDto.getSuccessResponseDto(user);
     }
 
@@ -31,8 +30,13 @@ public class UserController {
 
     @PostMapping("/findByUserId")
     public ResponseDto<User> findByUserId(@RequestParam Long id) {
-        log.error("........................user ID:" + id);
         User user = userService.findUserId(id);
+        return ResponseDto.getSuccessResponseDto(user);
+    }
+
+    @PostMapping("/findUser")
+    public ResponseDto<User> findUser(@RequestBody User user) {
+        user = userService.findUser(user);
         return ResponseDto.getSuccessResponseDto(user);
     }
 }

@@ -41,6 +41,15 @@ public class TrainingServiceImpl implements TrainingService {
         return result;
     }
 
+    @Override
+    public List<TrainingsDto> findTrainings(TrainingsDto trainingsDto) {
+        log.error(trainingsDto.toString());
+        List<Trainings> list = trainingRepository.findTrainings(trainingsDto.getSkillId(),
+                trainingsDto.getStartTime(), trainingsDto.getEndTime());
+        List<TrainingsDto> result = modifyList(list);
+        return result;
+    }
+
     private List<TrainingsDto> modifyList(List<Trainings> list) {
         if (list == null) {
             return null;

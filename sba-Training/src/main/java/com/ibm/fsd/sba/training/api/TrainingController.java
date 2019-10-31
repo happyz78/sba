@@ -30,4 +30,10 @@ public class TrainingController {
         List<TrainingsDto> list = trainingService.findTrainingByUserId(id);
         return ResponseDto.getSuccessResponseDto(list);
     }
+
+    @PostMapping("/findTrainings")
+    public ResponseDto<List<TrainingsDto>> findTrainings(@RequestBody TrainingsDto trainingsDto) {
+        List<TrainingsDto> list = trainingService.findTrainings(trainingsDto);
+        return ResponseDto.getSuccessResponseDto(list);
+    }
 }

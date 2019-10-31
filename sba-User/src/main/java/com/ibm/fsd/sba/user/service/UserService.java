@@ -7,4 +7,5 @@ public interface UserService {
     Boolean checkUserCriteria(User user);
     User findUser(User user);
     User findUserId(Long id);
+    User query(User user);
 }
