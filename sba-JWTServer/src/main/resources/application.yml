@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: jwt
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
+server:
+  port: 8081
+  max-http-header-size: 15360
+  servlet:
+    context-path: /jwt
+
+sba.security.jwt.secret: otherpeopledontknowit
+
+logging:
+  level:
+    root: INFO

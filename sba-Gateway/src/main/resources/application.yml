@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: gateway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
+server:
+  port: 8080
+  servlet:
+    context-path: /gateway
+
+zuul:
+  routes:
+    jwt:
+      path: /jwt/**
+      stripPrefix: false
+      sensitiveHeaders: Cookie,Set-Cookie
+    user:
+      path: /user/**
+      stripPrefix: false
+    training:
+      path: /training/**
+      stripPrefix: false
+    technology:
+      path: /technology/**
+      stripPrefix: false
+    search:
+      path: /search/**
+      stripPrefix: false
+    paymnet:
+      path: /paymnet/**
+      stripPrefix: false
+
+sba.security.jwt.secret: otherpeopledontknowit
