@@ -6,4 +6,5 @@ public interface UserService {
     User addUser(User user);
     Boolean checkUserCriteria(User user);
     User findUser(User user);
+    User findUserId(Long id);
 }

@@ -28,4 +28,11 @@ public class UserController {
         user = userService.addUser(user);
         return ResponseDto.getSuccessResponseDto(user);
     }
+
+    @PostMapping("/findByUserId")
+    public ResponseDto<User> findByUserId(@RequestParam Long id) {
+        log.error("........................user ID:" + id);
+        User user = userService.findUserId(id);
+        return ResponseDto.getSuccessResponseDto(user);
+    }
 }

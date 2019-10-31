@@ -16,6 +16,6 @@ public class ResponseDto<T> {
     }
 
     public static <T> ResponseDto<T> getSuccessResponseDto(T data) {
-        return new ResponseDto("00000", "操作成功", data);
+        return new ResponseDto("00000", "SUCCESS", data);
     }
 }
