@@ -64,13 +64,13 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
         StringBuilder sb = new StringBuilder();
         switch (user.getUserType()) {
             case "2":
-                sb.append("ADMIN,MENTOR,USER");
+                sb.append("ROLE_ADMIN,ROLE_MENTOR,ROLE_USER");
                 break;
             case "1":
-                sb.append("MENTOR,USER");
+                sb.append("ROLE_MENTOR,ROLE_USER");
                 break;
             case "0":
-                sb.append("USER");
+                sb.append("ROLE_USER");
                 break;
         }
         Collection<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList(sb.toString());

@@ -7,6 +7,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsUtils;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 
 import javax.servlet.http.HttpServletResponse;
@@ -36,16 +40,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .exceptionHandling().authenticationEntryPoint(
                             (req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
                 .and()
-                    .addFilterAfter(new JwtTokenAuthenticationFilter(config),
+                    .addFilterBefore(new JwtTokenAuthenticationFilter(config),
                             UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                     .antMatchers(config.getUrl()).permitAll()
-                    .antMatchers("/payment/**").hasRole("ADMIN")
-                    .antMatchers("/technology/**").hasRole("USER")
-                    .antMatchers("/training/**").hasRole("USER")
-                    .antMatchers("/user/**").hasRole("USER")
-                    .antMatchers("/search/**").permitAll()
+                    .antMatchers("/backend/admin").hasRole("ADMIN")
+                    .antMatchers("/user/**").hasRole("ADMIN")
                     .antMatchers("/jwt/**").permitAll();
     }
+
 }
 

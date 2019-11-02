@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
-@CrossOrigin
 @RestController
 @RequestMapping("/api/user/v1")
 public class UserController {

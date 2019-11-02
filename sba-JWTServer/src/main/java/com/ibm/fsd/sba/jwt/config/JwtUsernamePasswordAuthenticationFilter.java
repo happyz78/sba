@@ -56,6 +56,12 @@ public class JwtUsernamePasswordAuthenticationFilter extends AbstractAuthenticat
                 .signWith(SignatureAlgorithm.HS256, config.getSecret().getBytes())
                 .compact();
         rsp.addHeader(config.getHeader(), config.getPrefix() + " " + token);
+        rsp.setHeader("Content-Type", "application/json");
+        try {
+            rsp.getOutputStream().println("{\"token\":\"" + config.getPrefix() + " " + token + "\"}");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Getter

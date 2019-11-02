@@ -38,3 +38,7 @@ zuul:
       stripPrefix: false
 
 sba.security.jwt.secret: otherpeopledontknowit
+
+logging:
+  level:
+    root: INFO
