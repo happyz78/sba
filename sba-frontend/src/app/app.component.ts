@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LoginComponent } from './component/login/login.component';
+import { SearchComponent } from './component/search/search.component';
 
 @Component({
   selector: 'app-root',

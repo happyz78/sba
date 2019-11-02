@@ -1,0 +1,31 @@
+<div class="container" style="display: flex;justify-content: center;align-items: center;height: 100vh;">
+    <div class="card" style="width: 90%;">
+      <div class="card-body">
+        <h5 class="card-title">Dashboard Data 
+          <button type="button" class="float-right btn btn-outline-danger btn-sm" (click)="logout()">Sign Up</button>
+          <button type="button" class="float-right btn btn-outline-danger btn-sm" [routerLink]="['/login']">Sign In</button>
+        </h5>
+        <div class="card-text">
+            <table class="table table-striped table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">Latitude</th>
+                    <th scope="col">Longitude</th>
+                    <th scope="col">Accuracy</th>
+                    <th scope="col">Timestamp</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of dataFromServer">
+                    <td>{{item.id}}</td>
+                    <td>{{item.userName}}</td>
+                    <td>{{item.password}}</td>
+                    <td>{{item.userType}}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+      </div>
+    </div>
+</div>
+<router-outlet></router-outlet>
