@@ -1,8 +1,9 @@
 package com.ibm.fsd.sba.search.api;
 
+import com.ibm.fsd.sba.search.feign.SkillFeign;
 import com.ibm.fsd.sba.search.feign.TrainingFeign;
-import com.ibm.fsd.sba.search.model.ResponseDto;
-import com.ibm.fsd.sba.search.model.TrainingsDto;
+import com.ibm.fsd.sba.search.feign.UserFeign;
+import com.ibm.fsd.sba.search.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +15,17 @@ import java.util.List;
 @RequestMapping("/api/search/v1")
 public class SearchController {
     @Autowired
-    TrainingFeign trainingFeign;
+    UserFeign userFeign;
+    @Autowired
+    SkillFeign skillFeign;
 
-    @PostMapping("/findMentor")
-    public ResponseDto<List<TrainingsDto>> findTrainingByMentorId(@RequestBody TrainingsDto trainingsDto) {
-        return trainingFeign.findTrainings(trainingsDto);
+    @PostMapping("/findMentors")
+    public ResponseDto<List<MentorSkillDto>> findTrainingByMentorId(@RequestBody MentorSkillDto mentorSkillDto) {
+        return userFeign.findMentors(mentorSkillDto);
+    }
+
+    @PostMapping("/findAllSkills")
+    public ResponseDto<List<SkillDto>> findAllSkills() {
+        return skillFeign.findAllSkills();
     }
 }

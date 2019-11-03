@@ -1,11 +1,14 @@
 package com.ibm.fsd.sba.user.api;
 
+import com.ibm.fsd.sba.user.entity.MentorSkill;
 import com.ibm.fsd.sba.user.entity.User;
 import com.ibm.fsd.sba.user.model.ResponseDto;
 import com.ibm.fsd.sba.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -37,5 +40,11 @@ public class UserController {
     public ResponseDto<User> findUser(@RequestBody User user) {
         user = userService.findUser(user);
         return ResponseDto.getSuccessResponseDto(user);
+    }
+
+    @PostMapping("/findMentors")
+    public ResponseDto<List<MentorSkill>> findMentors(@RequestBody MentorSkill mentorSkill) {
+        List<MentorSkill> list = userService.findMentors(mentorSkill);
+        return ResponseDto.getSuccessResponseDto(list);
     }
 }

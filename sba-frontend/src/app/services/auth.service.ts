@@ -12,6 +12,7 @@ export class AuthService {
 
   // API path
   basePath = 'http://localhost:8080/gateway';
+  successCode = '00000';
 
   constructor(
     private router: Router,

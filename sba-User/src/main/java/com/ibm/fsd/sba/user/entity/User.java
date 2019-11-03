@@ -34,4 +34,5 @@ public class User {
     private String active;
     @Column(name="USER_TYPE")
     private String userType;
+
 }
