@@ -6,6 +6,7 @@
           <button type="button" class="float-right btn btn-primary btn-sm" *ngIf="!isLogin" [routerLink]="['/login']" style="margin-right: 10px;">Sign In</button>
           <button type="button" class="float-right btn btn-primary btn-sm" *ngIf="isLogin" (click)="logout()" style="margin-right: 10px;">Sign Out</button>
           <button type="button" class="float-right btn btn-primary btn-sm" *ngIf="isMentor" [routerLink]="['/mentorCalendar']" style="margin-right: 10px;">Mentor Calendar</button>
+          <button type="button" class="float-right btn btn-primary btn-sm" *ngIf="isMentor" [routerLink]="['/mentorTraining']" style="margin-right: 10px;">Mentor Confirm</button>
         </h5>
         <div class="card-text">
 

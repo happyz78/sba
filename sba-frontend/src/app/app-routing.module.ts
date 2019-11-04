@@ -7,6 +7,7 @@ import { TrainingsComponent } from './component/trainings/trainings.component';
 import { SingupComponent } from './component/singup/singup.component';
 import { MentorCalendarComponent } from './component/mentor-calendar/mentor-calendar.component';
 import { MentorAuthGuard } from './guards/mentorAuth.guard';
+import { MentorTrainingComponent } from './component/mentor-training/mentor-training.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
     path: 'mentorCalendar',
     canActivate: [MentorAuthGuard],
     component: MentorCalendarComponent
+  },
+  {
+    path: 'mentorTraining',
+    canActivate: [MentorAuthGuard],
+    component: MentorTrainingComponent
   },
   {
     path: 'trainings',

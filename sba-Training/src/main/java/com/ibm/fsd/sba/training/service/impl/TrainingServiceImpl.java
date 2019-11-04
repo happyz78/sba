@@ -55,6 +55,13 @@ public class TrainingServiceImpl implements TrainingService {
         return trainingRepository.save(trainings);
     }
 
+    @Override
+    public List<TrainingsDto> findConfirm(TrainingsDto trainingsDto) {
+        List<Trainings> list = trainingRepository.findConfirm(trainingsDto.getUserId(), 0);
+        List<TrainingsDto> result = modifyList(list);
+        return result;
+    }
+
     private List<TrainingsDto> modifyList(List<Trainings> list) {
         if (list == null) {
             return null;

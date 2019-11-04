@@ -15,6 +15,7 @@ import { MentorCalendarComponent } from './component/mentor-calendar/mentor-cale
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddCalendarComponent } from './component/add-calendar/add-calendar.component';
 import {MatDatepickerModule, MatInputModule,MatNativeDateModule} from '@angular/material';
+import { MentorTrainingComponent } from './component/mentor-training/mentor-training.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {MatDatepickerModule, MatInputModule,MatNativeDateModule} from '@angular/
     TrainingsComponent,
     SingupComponent,
     MentorCalendarComponent,
-    AddCalendarComponent
+    AddCalendarComponent,
+    MentorTrainingComponent
   ],
   imports: [
     MatDialogModule,

@@ -11,4 +11,6 @@ public interface TrainingService {
     List<TrainingsDto> findTrainings(TrainingsDto trainingsDto);
 
     Trainings save(Trainings trainings);
+
+    List<TrainingsDto> findConfirm(TrainingsDto trainingsDto);
 }

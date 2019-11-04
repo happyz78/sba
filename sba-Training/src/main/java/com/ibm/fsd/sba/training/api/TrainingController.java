@@ -40,4 +40,10 @@ public class TrainingController {
         Trainings dto = trainingService.save(trainingsDto);
         return ResponseDto.getSuccessResponseDto(dto);
     }
+
+    @PostMapping("/findConfirm")
+    public ResponseDto<List<TrainingsDto>> findConfirm(@RequestBody TrainingsDto trainingsDto) {
+        List<TrainingsDto> list = trainingService.findConfirm(trainingsDto);
+        return ResponseDto.getSuccessResponseDto(list);
+    }
 }

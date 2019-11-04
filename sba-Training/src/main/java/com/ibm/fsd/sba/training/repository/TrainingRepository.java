@@ -33,4 +33,23 @@ public interface TrainingRepository  extends JpaRepository<Trainings, Integer> {
     List<Trainings>  findTrainings(@Param("skillId") Long id,
                                    @Param("startTime") String startTime,
                                    @Param("endTime") String endTime);
+
+
+    @Query(value = "SELECT t.`ID`," +
+            "    t.`USER_ID`," +
+            "    t.`MENTOR_ID`," +
+            "    t.`SKILL_ID`," +
+            "    t.`STATUS`," +
+            "    t.`PROGRESS`," +
+            "    t.`RATING`," +
+            "    t.`START_DATE`," +
+            "    t.`END_DATE`," +
+            "    t.`START_TIME`," +
+            "    t.`END_TIME`" +
+            " FROM Trainings t " +
+            " WHERE (t.MENTOR_ID = :userId or :userId is null)" +
+            " and (t.STATUS = :status or :status is null)" ,
+            nativeQuery = true)
+    List<Trainings>  findConfirm(@Param("userId") Long userId,
+                                   @Param("status") Integer status);
 }
