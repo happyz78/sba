@@ -26,7 +26,7 @@ public class TrainingController {
 
     @PostMapping("/findTrainingsByUserId")
     public ResponseDto<List<TrainingsDto>> findTrainingsByUserId(@RequestBody TrainingsDto trainingsDto) {
-        List<TrainingsDto> list = trainingService.findTrainingByUserId(trainingsDto.getUserId());
+        List<TrainingsDto> list = trainingService.findTrainingByUserId(trainingsDto);
         return ResponseDto.getSuccessResponseDto(list);
     }
 

@@ -35,8 +35,9 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public List<TrainingsDto> findTrainingByUserId(Long id) {
-        List<Trainings> list = trainingRepository.findByUserId(id);
+    public List<TrainingsDto> findTrainingByUserId(TrainingsDto trainingsDto) {
+        List<Trainings> list = trainingRepository.findTrainingByUserId(trainingsDto.getUserId(),
+                trainingsDto.getMentorId());
         List<TrainingsDto> result = modifyList(list);
         return result;
     }

@@ -32,7 +32,10 @@
                         <td>{{item.startTime}}</td>
                         <td>{{item.endTime}}</td>
                         <td>{{mentor.selfRating}}</td>
-                        <td><button type="button" class="float-center btn btn-info btn-sm" (click)="proposal(item)" >Proposal</button></td>
+                        <td>
+                          <button type="button" class="float-center btn btn-info btn-sm" (click)="proposal(item)" *ngIf="checkStatus(item)">Proposal</button>
+                          <button type="button" class="float-center btn btn-info btn-sm" (click)="proposal(item)" *ngIf="!checkStatus(item)">Payment</button>
+                        </td>
                       </tr>
                     </tbody>
                   </table>

@@ -20,28 +20,24 @@ export class TrainingsComponent implements OnInit {
   mentor = {};
   skills = [];
   trainings = [];
+  proposalTraining = [];
 
   ngOnInit() {
     this.mentor = JSON.parse(localStorage.getItem('mentor'));
     this.skills = JSON.parse(localStorage.getItem('skills'));
     this.getTrainings();
   }
-  // Http Options
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    }),
-    //observe: "response" as 'body'
-  };
-
 
   getTrainings() {
     console.log(this.mentor);
-    const param = {mentorId  : this.mentor['mentor']['userId']};
+    const param = {
+      mentorId  : this.mentor['mentor']['userId'],
+      userId : localStorage.getItem('userId')
+    };
     console.log(param);
     this.http
       .post<Result>(this.authService.basePath + '/training/api/training/v1/findTrainingsByMentorId',
-      param, this.httpOptions)
+      param, this.authService.httpOptions)
       .subscribe(response => {
         console.log(response);
         if (response.code === this.authService.successCode) {
@@ -52,6 +48,20 @@ export class TrainingsComponent implements OnInit {
           });
         }
       });
+
+    this.http
+    .post<Result>(this.authService.basePath + '/training/api/training/v1/findTrainingsByUserId',
+    param, this.authService.httpOptions)
+    .subscribe(response => {
+      console.log(response);
+      if (response.code === this.authService.successCode) {
+        const data = response.data;
+        console.log(data);
+        data.forEach(element => {
+          this.proposalTraining.push(element);
+        });
+      }
+    });
   }
 
   getSkillName(sid) {
@@ -94,5 +104,16 @@ export class TrainingsComponent implements OnInit {
           console.log(data);
         }
       });
+  }
+
+  checkStatus(item): boolean {
+    console.log(item);
+    let flg = true;
+    this.proposalTraining.forEach(value => {
+      if (value.startTime === item.startTime && value.endTime === item.endTime) {
+        flg = false;
+      }
+    });
+    return flg;
   }
 }
