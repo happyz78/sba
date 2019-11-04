@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { Router } from '@angular/router';
 import { Result } from '../../models/result';
 
@@ -36,12 +35,12 @@ export class SearchComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.refreshSkill();
-    this.isLogin = this.authService.isLoggedIn();
     const userType = localStorage.getItem('userType');
     if (userType === '1' || userType === '2') {
       this.isMentor = true;
     }
+    this.refreshSkill();
+    this.isLogin = this.authService.isLoggedIn();
   }
 
   refreshSkill() {

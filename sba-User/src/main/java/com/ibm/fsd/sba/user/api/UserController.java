@@ -1,6 +1,7 @@
 package com.ibm.fsd.sba.user.api;
 
 import com.ibm.fsd.sba.user.entity.Mentor;
+import com.ibm.fsd.sba.user.entity.MentorCalendar;
 import com.ibm.fsd.sba.user.entity.MentorSkill;
 import com.ibm.fsd.sba.user.entity.User;
 import com.ibm.fsd.sba.user.model.ResponseDto;
@@ -83,5 +84,18 @@ public class UserController {
     public ResponseDto<List<MentorSkill>> findMentors(@RequestBody MentorSkill mentorSkill) {
         List<MentorSkill> list = userService.findMentors(mentorSkill);
         return ResponseDto.getSuccessResponseDto(list);
+    }
+
+    @PostMapping("/findMentorCalendar")
+    public ResponseDto<List<MentorCalendar>> findMentorCalendar(@RequestBody MentorCalendar mentorCalendar) {
+        List<MentorCalendar> list = userService.findMentorCalendar(mentorCalendar);
+        return ResponseDto.getSuccessResponseDto(list);
+    }
+
+
+    @PostMapping("/saveMentorCalendar")
+    public ResponseDto<MentorCalendar> saveMentorCalendar(@RequestBody MentorCalendar mentorCalendar) {
+        mentorCalendar = userService.saveMentorCalendar(mentorCalendar);
+        return ResponseDto.getSuccessResponseDto(mentorCalendar);
     }
 }

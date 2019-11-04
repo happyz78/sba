@@ -64,6 +64,7 @@ export class AuthService {
       .subscribe(response => {
         localStorage.setItem('userId', response['data']['id']);
         localStorage.setItem('userType', response['data']['userType']);
+        localStorage.setItem('displayName', response['data']['firstName'] + ' ' + response['data']['lastName']);
       });
   }
 

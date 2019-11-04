@@ -1,8 +1,10 @@
 package com.ibm.fsd.sba.user.service.impl;
 
 import com.ibm.fsd.sba.user.entity.Mentor;
+import com.ibm.fsd.sba.user.entity.MentorCalendar;
 import com.ibm.fsd.sba.user.entity.MentorSkill;
 import com.ibm.fsd.sba.user.entity.User;
+import com.ibm.fsd.sba.user.repository.MentorCalendarRespository;
 import com.ibm.fsd.sba.user.repository.MentorRespository;
 import com.ibm.fsd.sba.user.repository.MentorSkillRepository;
 import com.ibm.fsd.sba.user.repository.UserRepository;
@@ -22,6 +24,8 @@ public class UserServiceImpl implements UserService {
     private MentorSkillRepository mentorSkillRepository;
     @Autowired
     private MentorRespository mentorRespository;
+    @Autowired
+    private MentorCalendarRespository mentorCalendarRespository;
 
     @Override
     public User addUser(User user) {
@@ -61,6 +65,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public MentorSkill saveMentorSkill(MentorSkill mentorSkill) {
         return mentorSkillRepository.save(mentorSkill);
+    }
+
+    @Override
+    public List<MentorCalendar> findMentorCalendar(MentorCalendar mentorCalendar) {
+        return mentorCalendarRespository.findByMid(mentorCalendar.getMid());
+    }
+
+    @Override
+    public MentorCalendar saveMentorCalendar(MentorCalendar mentorCalendar) {
+        return mentorCalendarRespository.save(mentorCalendar);
     }
 
     @Override

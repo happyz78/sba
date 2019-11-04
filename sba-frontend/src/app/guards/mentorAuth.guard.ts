@@ -13,12 +13,11 @@ export class MentorAuthGuard implements CanActivate {
   ) { }
 
   canActivate() {
-    if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/login']);
-      return false;
-    } else {
+    const userType = localStorage.getItem('userType');
+    if (userType === '1' || userType === '2') {
       return true;
     }
+    return false;
   }
 
 }

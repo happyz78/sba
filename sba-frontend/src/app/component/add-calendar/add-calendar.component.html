@@ -1,0 +1,31 @@
+
+<h2 mat-dialog-title>Add Calendar</h2>
+
+<mat-dialog-content>
+
+            <div class="card-text">
+              <form (ngSubmit)="signup()" #form="ngForm">
+                <div class="form-group">
+                    <label for="startDate">Start Date(YYYY-MM-DD)</label>
+                    <input type="text" class="form-control" id="startDate" name="startDate" placeholder="Enter Start Date" [(ngModel)]="model.startDatetime" />
+                </div>
+                <div class="form-group">
+                  <label for="endDate">End Date(YYYY-MM-DD)</label>
+                  <input type="text" class="form-control" id="endDate" name="endDate" placeholder="Enter End Date" [(ngModel)]="model.endDatetime" />
+                </div>
+                <div class="form-group">
+                  <label for="startTime">Start Time(HH:MM)</label>
+                  <input type="text" class="form-control" id="startTime" name="startTime" placeholder="Enter Start Time" [(ngModel)]="model.startTime" />
+                </div>
+                <div class="form-group">
+                  <label for="endTime">End Time(HH:MM)</label>
+                  <input type="text" class="form-control" id="endTime" name="endTime" placeholder="Enter End Time" [(ngModel)]="model.endTime" />
+                </div>
+              </form>
+            </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="btn btn-primary btn-sm" (click)="save()" style="margin-right: 10px;">Save</button>
+    <button class="btn btn-primary btn-sm" (click)="close()" style="margin-right: 10px;">Close</button>
+</mat-dialog-actions>
