@@ -24,6 +24,11 @@ public class SearchController {
         return userFeign.findMentors(mentorSkillDto);
     }
 
+    @PostMapping("/queryUser")
+    public ResponseDto<UserDto> queryUser(@RequestBody UserDto userDto) {
+        return userFeign.queryUser(userDto);
+    }
+
     @PostMapping("/findAllSkills")
     public ResponseDto<List<SkillDto>> findAllSkills() {
         return skillFeign.findAllSkills();

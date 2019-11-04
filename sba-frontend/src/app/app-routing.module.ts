@@ -5,12 +5,19 @@ import { SearchComponent } from './component/search/search.component';
 import { LoginComponent } from './component/login/login.component';
 import { TrainingsComponent } from './component/trainings/trainings.component';
 import { SingupComponent } from './component/singup/singup.component';
+import { MentorCalendarComponent } from './component/mentor-calendar/mentor-calendar.component';
+import { MentorAuthGuard } from './guards/mentorAuth.guard';
 
 const routes: Routes = [
   {
     path: 'search',
     // canActivate: [AuthGuard],
     component: SearchComponent
+  },
+  {
+    path: 'mentorCalendar',
+    canActivate: [MentorAuthGuard],
+    component: MentorCalendarComponent
   },
   {
     path: 'trainings',

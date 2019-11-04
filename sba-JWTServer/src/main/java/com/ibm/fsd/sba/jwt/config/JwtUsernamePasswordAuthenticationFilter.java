@@ -58,7 +58,8 @@ public class JwtUsernamePasswordAuthenticationFilter extends AbstractAuthenticat
         rsp.addHeader(config.getHeader(), config.getPrefix() + " " + token);
         rsp.setHeader("Content-Type", "application/json");
         try {
-            rsp.getOutputStream().println("{\"token\":\"" + config.getPrefix() + " " + token + "\"}");
+            rsp.getOutputStream().println("{\"token\":\"" + config.getPrefix() + " " + token + "\"," +
+                    "\"name\" : \"" + auth.getName() +  "\"}");
         } catch (IOException e) {
             e.printStackTrace();
         }

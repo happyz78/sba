@@ -11,6 +11,7 @@ import { SearchComponent } from './component/search/search.component';
 import {JwtInterceptor} from './interceptor/jwt.interceptor';
 import { TrainingsComponent } from './component/trainings/trainings.component';
 import { SingupComponent } from './component/singup/singup.component';
+import { MentorCalendarComponent } from './component/mentor-calendar/mentor-calendar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SingupComponent } from './component/singup/singup.component';
     LoginComponent,
     SearchComponent,
     TrainingsComponent,
-    SingupComponent
+    SingupComponent,
+    MentorCalendarComponent
   ],
   imports: [
     BrowserModule,

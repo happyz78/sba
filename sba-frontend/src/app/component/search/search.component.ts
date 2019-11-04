@@ -15,6 +15,7 @@ export class SearchComponent implements OnInit {
 
   showAlert = false;
   isLogin = false;
+  isMentor = false;
   model: any = {};
 
   dataFromServer: any = [];
@@ -37,6 +38,10 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.refreshSkill();
     this.isLogin = this.authService.isLoggedIn();
+    const userType = localStorage.getItem('userType');
+    if (userType === '1' || userType === '2') {
+      this.isMentor = true;
+    }
   }
 
   refreshSkill() {

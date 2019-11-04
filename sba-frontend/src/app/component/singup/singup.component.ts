@@ -16,9 +16,11 @@ export class SingupComponent implements OnInit {
     private http: HttpClient,
     private authService: AuthService) { }
 
+  message = '';
   model = {};
   signupMentor = false;
   skills = [];
+  showAlert = false;
 
   ngOnInit() {
     this.model['userType'] = 0;
@@ -47,18 +49,62 @@ export class SingupComponent implements OnInit {
         }
       });
   }
+
   signup() {
+    if (this.checkInput()) {
+      this.showAlert = true;
+      return;
+    }
+
+    const param = {
+      userName : this.model['userName']
+    };
     this.http
-      .post<Result>(this.authService.basePath + '/search/api/search/v1/signup', this.model, this.authService.httpOptions)
+      .post(this.authService.basePath + '/search/api/search/v1/queryUser',
+      param, this.authService.httpOptions)
       .subscribe(response => {
-        console.log(response);
-        if (response.code === this.authService.successCode) {
-          const data = response.data;
-          console.log(data);
-          data.forEach(element => {
-            this.skills.push(element);
-          });
+        if (response['data']) {
+          this.message = 'Duplicate User Name';
+          this.showAlert = true;
+          return;
         }
+
+        this.http
+        .post<Result>(this.authService.basePath + '/search/api/search/v1/signup', this.model, this.authService.httpOptions)
+        .subscribe(resp => {
+          console.log(resp);
+          if (resp.code === this.authService.successCode) {
+            this.router.navigate(['login']);
+          }
+        });
       });
+
+
+  }
+
+  checkInput(): boolean {
+    if (!this.model['userName']) {
+      this.message = 'Please input User Name';
+      return true;
+    }
+    if (!this.model['password']) {
+      this.message = 'Please input Password';
+      return true;
+    }
+    if (this.model['userType'] === 1) {
+      if (!this.model['sid']) {
+        this.message = 'Please input Skill';
+        return true;
+      }
+      if (!this.model['yearsOfExperience']) {
+        this.message = 'Please input Years Of Experience';
+        return true;
+      }
+      if (!this.model['selfRating']) {
+        this.message = 'Please input Self Rating';
+        return true;
+      }
+    }
+    return false;
   }
 }

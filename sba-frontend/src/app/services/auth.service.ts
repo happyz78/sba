@@ -56,15 +56,14 @@ export class AuthService {
   setUser(resp: LoginResponse) {
     localStorage.setItem('access_token', resp.token);
     const param = {
-      userName : 'userName1'
+      userName : resp.name
     };
     this.http
       .post(this.basePath + '/user/api/user/v1/query',
       param, this.httpOptions)
       .subscribe(response => {
-        console.log(response);
-        console.log(response['data']['id']);
         localStorage.setItem('userId', response['data']['id']);
+        localStorage.setItem('userType', response['data']['userType']);
       });
   }
 
