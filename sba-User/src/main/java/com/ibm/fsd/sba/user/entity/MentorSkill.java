@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 public class MentorSkill {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="ID")
     private Long id;
     @Column(name="SID")

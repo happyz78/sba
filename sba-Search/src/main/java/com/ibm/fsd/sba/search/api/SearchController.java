@@ -28,4 +28,9 @@ public class SearchController {
     public ResponseDto<List<SkillDto>> findAllSkills() {
         return skillFeign.findAllSkills();
     }
+
+    @PostMapping("/signup")
+    public ResponseDto<UserDto> signup(@RequestBody UserDto userDto) {
+        return userFeign.signup(userDto);
+    }
 }

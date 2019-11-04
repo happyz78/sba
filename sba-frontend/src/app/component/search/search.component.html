@@ -2,7 +2,7 @@
     <div class="card" style="width: 90%;">
       <div class="card-body">
         <h5 class="card-title">Mentor Search 
-          <button type="button" class="float-right btn btn-primary btn-sm" *ngIf="!isLogin" (click)="logout()">Sign Up</button>
+          <button type="button" class="float-right btn btn-primary btn-sm" *ngIf="!isLogin" [routerLink]="['/signup']">Sign Up</button>
           <button type="button" class="float-right btn btn-primary btn-sm" *ngIf="!isLogin" [routerLink]="['/login']" style="margin-right: 10px;">Sign In</button>
           <button type="button" class="float-right btn btn-primary btn-sm" *ngIf="isLogin" (click)="logout()" style="margin-right: 10px;">Sign Out</button>
         </h5>

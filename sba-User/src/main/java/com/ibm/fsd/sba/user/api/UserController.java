@@ -1,13 +1,16 @@
 package com.ibm.fsd.sba.user.api;
 
+import com.ibm.fsd.sba.user.entity.Mentor;
 import com.ibm.fsd.sba.user.entity.MentorSkill;
 import com.ibm.fsd.sba.user.entity.User;
 import com.ibm.fsd.sba.user.model.ResponseDto;
+import com.ibm.fsd.sba.user.model.UserDto;
 import com.ibm.fsd.sba.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @Slf4j
@@ -21,6 +24,40 @@ public class UserController {
     @PostMapping("/query")
     public ResponseDto<User> query(@RequestBody User user) {
         user = userService.query(user);
+        return ResponseDto.getSuccessResponseDto(user);
+    }
+
+    @PostMapping("/signup")
+    public ResponseDto<User> signup(@RequestBody UserDto userDto) {
+        User user = new User();
+        user.setUserName(userDto.getUserName());
+        user.setPassword(userDto.getPassword());
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setUserType(userDto.getUserType());
+        try {
+            user = userService.addUser(user);
+        } catch (Exception e) {
+            if (e.getMessage().startsWith("Duplicate")) {
+                return new ResponseDto<>("500", "User Name is duplicate!", null);
+            } else {
+                throw e;
+            }
+        }
+        if ("1".equals(userDto.getUserType())) {
+            Mentor mentor = new Mentor();
+            mentor.setUserName(user.getUserName());
+            mentor.setYearsOfExperience(userDto.getYearsOfExperience());
+            mentor.setUser(user);
+            mentor = userService.saveMentor(mentor);
+
+            MentorSkill mentorSkill = new MentorSkill();
+            mentorSkill.setMentor(mentor);
+            mentorSkill.setSelfRating(userDto.getSelfRating());
+            mentorSkill.setSid(userDto.getSid());
+            mentorSkill.setYearsOfExperience(userDto.getYearsOfExperience());
+            mentorSkill = userService.saveMentorSkill(mentorSkill);
+        }
         return ResponseDto.getSuccessResponseDto(user);
     }
 

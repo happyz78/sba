@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 public class Mentor implements Serializable {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="ID")
     private Long id;
     @Column(name="USER_NAME")

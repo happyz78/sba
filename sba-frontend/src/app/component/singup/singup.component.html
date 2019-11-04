@@ -1,1 +1,47 @@
-<p>singup works!</p>
+<div class="container" style="display: flex;justify-content: center;align-items: center;height: 100vh;">
+        <div class="card" style="width: 50%;">
+          <div class="card-body">
+            <h5 class="card-title">Sign Up</h5>
+            <div class="card-text">
+              <form (ngSubmit)="signup()" #form="ngForm">
+                <div class="form-group">
+                    <label for="userType">User Type</label>
+                    <select (change)="onChange()" class="form-control" id="userType" name="userType" style="margin-right: 10px;" [(ngModel)]="model.userType" required>
+                        <option value="0" selected>
+                            User
+                        </option>
+                        <option value="1">
+                            Mentor
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="username" class="form-control" id="exampleInputEmail1" name="username" placeholder="Enter email" [(ngModel)]="model.userName" required />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password" [(ngModel)]="model.password" required />
+                </div>
+                <div class="form-group" *ngIf="signupMentor">
+                  <label for="skill">Skills</label>
+                  <select class="form-control" id="skill" name="skill" style="margin-right: 10px;" [(ngModel)]="model.sid">
+                    <option *ngFor="let item of skills" [value]="item.id">
+                        {{item.name}}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group" *ngIf="signupMentor">
+                  <label for="yearsOfExperience">Years of Experience</label>
+                  <input type="text" class="form-control" id="yearsOfExperience" name="yearsOfExperience" placeholder="Years of Experience" [(ngModel)]="model.yearsOfExperience" />
+                </div>
+                <div class="form-group" *ngIf="signupMentor">
+                  <label for="yearsOfExperience">Self Rating</label>
+                  <input type="text" class="form-control" id="selfRating" name="selfRating" placeholder="Enter Self Rating" [(ngModel)]="model.selfRating" />
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="submitted || !form.valid">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>

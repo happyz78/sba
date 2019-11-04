@@ -1,8 +1,9 @@
-package com.ibm.fsd.sba.search.model;
+package com.ibm.fsd.sba.user.model;
 
 import lombok.Data;
 import lombok.ToString;
 
+import javax.persistence.*;
 import java.util.Date;
 
 @Data

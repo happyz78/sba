@@ -4,6 +4,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { SearchComponent } from './component/search/search.component';
 import { LoginComponent } from './component/login/login.component';
 import { TrainingsComponent } from './component/trainings/trainings.component';
+import { SingupComponent } from './component/singup/singup.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
     path: 'trainings',
     canActivate: [AuthGuard],
     component: TrainingsComponent
+  },
+  {
+    path: 'signup',
+    component: SingupComponent,
   },
   {
     path: 'login',

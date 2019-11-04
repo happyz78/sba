@@ -15,4 +15,6 @@ public interface UserFeign {
     ResponseDto<UserDto> queryUser(UserDto user);
     @PostMapping("/user/api/user/v1/findMentors")
     ResponseDto<List<MentorSkillDto>> findMentors(MentorSkillDto mentorSkillDto);
+    @PostMapping("/user/api/user/v1/signup")
+    ResponseDto<UserDto> signup(UserDto user);
 }
