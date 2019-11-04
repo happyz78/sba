@@ -64,6 +64,7 @@ export class SearchComponent implements OnInit {
       .post<Result>(this.authService.basePath + '/search/api/search/v1/findMentors', this.model, this.httpOptions)
       .subscribe(response => {
         console.log(response);
+        this.dataFromServer = [];
         if (response.code === this.authService.successCode) {
           const data = response.data;
           console.log(data);
@@ -86,9 +87,17 @@ export class SearchComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    this.isLogin = false;
   }
 
   login() {
     this.router.navigate(['login']);
+    this.isLogin = this.authService.isLoggedIn();
+  }
+
+  goTraining(item) {
+    localStorage.setItem('mentor', JSON.stringify(item));
+    localStorage.setItem('skills', JSON.stringify(this.skills));
+    this.router.navigate(['/trainings']);
   }
 }

@@ -4,4 +4,5 @@ export interface LoginResponse {
     name: string;
     status: string;
     message: string;
+    userId: string;
 }

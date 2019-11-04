@@ -11,7 +11,7 @@ import java.util.Date;
 @Entity
 public class Trainings {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="ID")
     private Long id;
     @Column(name="USER_ID")

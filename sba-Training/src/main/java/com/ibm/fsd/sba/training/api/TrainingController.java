@@ -19,14 +19,14 @@ public class TrainingController {
     TrainingService trainingService;
 
     @PostMapping("/findTrainingsByMentorId")
-    public ResponseDto<List<TrainingsDto>> findTrainingByMentorId(@RequestParam Long id) {
-        List<TrainingsDto> list = trainingService.findTrainingByMentorId(id);
+    public ResponseDto<List<TrainingsDto>> findTrainingByMentorId(@RequestBody TrainingsDto trainingsDto) {
+        List<TrainingsDto> list = trainingService.findTrainingByMentorId(trainingsDto.getMentorId());
         return ResponseDto.getSuccessResponseDto(list);
     }
 
     @PostMapping("/findTrainingsByUserId")
-    public ResponseDto<List<TrainingsDto>> findTrainingsByUserId(@RequestParam Long id) {
-        List<TrainingsDto> list = trainingService.findTrainingByUserId(id);
+    public ResponseDto<List<TrainingsDto>> findTrainingsByUserId(@RequestBody TrainingsDto trainingsDto) {
+        List<TrainingsDto> list = trainingService.findTrainingByUserId(trainingsDto.getUserId());
         return ResponseDto.getSuccessResponseDto(list);
     }
 
@@ -34,5 +34,10 @@ public class TrainingController {
     public ResponseDto<List<TrainingsDto>> findTrainings(@RequestBody TrainingsDto trainingsDto) {
         List<TrainingsDto> list = trainingService.findTrainings(trainingsDto);
         return ResponseDto.getSuccessResponseDto(list);
+    }
+    @PostMapping("/save")
+    public ResponseDto<Trainings> save(@RequestBody Trainings trainingsDto) {
+        Trainings dto = trainingService.save(trainingsDto);
+        return ResponseDto.getSuccessResponseDto(dto);
     }
 }

@@ -12,4 +12,6 @@ public class MentorCalendarDto {
     private Long mid;
     private String startDatetime;
     private String endDatetime;
+    private String startTime;
+    private String endTime;
 }

@@ -15,8 +15,6 @@ public class Mentor implements Serializable {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="ID")
     private Long id;
-    @Column(name="user_Id")
-    private Long userId;
     @Column(name="USER_NAME")
     private String userName;
     @Column(name="LINKEDDIN_URL")
@@ -35,6 +33,6 @@ public class Mentor implements Serializable {
     private List<MentorCalendar> mentorCalendar;
 
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinColumn(name="id", referencedColumnName="user_Id")
+    @JoinColumn(name="user_Id", referencedColumnName="id")
     private User user;
 }

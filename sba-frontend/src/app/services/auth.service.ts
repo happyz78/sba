@@ -22,7 +22,7 @@ export class AuthService {
   // Http Options
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'text/plain'
+      'Content-Type': 'application/json'
     }),
     //observe: "response" as 'body'
   };
@@ -54,9 +54,18 @@ export class AuthService {
 
   // After login save token and other values(if any) in localStorage
   setUser(resp: LoginResponse) {
-    localStorage.setItem('name', resp.name);
     localStorage.setItem('access_token', resp.token);
-    this.router.navigate(['/dashboard']);
+    const param = {
+      userName : 'userName1'
+    };
+    this.http
+      .post(this.basePath + '/user/api/user/v1/query',
+      param, this.httpOptions)
+      .subscribe(response => {
+        console.log(response);
+        console.log(response['data']['id']);
+        localStorage.setItem('userId', response['data']['id']);
+      });
   }
 
   // Checking if token is set

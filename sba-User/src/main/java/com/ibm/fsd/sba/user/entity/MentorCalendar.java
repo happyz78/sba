@@ -19,4 +19,8 @@ public class MentorCalendar {
     private String startDatetime;
     @Column(name="END_DATETIME")
     private String endDatetime;
+    @Column(name="START_TIME")
+    private String startTime;
+    @Column(name="END_TIME")
+    private String endTime;
 }

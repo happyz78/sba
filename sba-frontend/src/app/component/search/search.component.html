@@ -4,6 +4,7 @@
         <h5 class="card-title">Mentor Search 
           <button type="button" class="float-right btn btn-primary btn-sm" *ngIf="!isLogin" (click)="logout()">Sign Up</button>
           <button type="button" class="float-right btn btn-primary btn-sm" *ngIf="!isLogin" [routerLink]="['/login']" style="margin-right: 10px;">Sign In</button>
+          <button type="button" class="float-right btn btn-primary btn-sm" *ngIf="isLogin" (click)="logout()" style="margin-right: 10px;">Sign Out</button>
         </h5>
         <div class="card-text">
 
@@ -31,7 +32,6 @@
                     <th scope="col">Years of Experience</th>
                     <th scope="col">Opened Training</th>
                     <th scope="col">Fee charged</th>
-                    <th scope="col">Oppration</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -39,9 +39,8 @@
                     <td>{{item.mentor.user.firstName}} &nbsp; {{item.mentor.user.lastName}}</td>
                     <td>{{getSkillName(item.sid)}}</td>
                     <td>{{item.yearsOfExperience}}</td>
-                    <td><button type="button" class="float-right btn btn-link btn-sm">Show</button></td>
+                    <td><button type="button" class="float-right btn btn-link btn-sm" (click)="goTraining(item)">Show</button></td>
                     <td>{{item.selfRating}}</td>
-                    <td><button type="button" class="float-right btn btn-info btn-sm" [routerLink]="['/login']" *ngIf="isLogin">select</button></td>
                   </tr>
                 </tbody>
               </table>

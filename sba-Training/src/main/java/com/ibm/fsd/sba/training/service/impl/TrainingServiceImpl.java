@@ -50,6 +50,11 @@ public class TrainingServiceImpl implements TrainingService {
         return result;
     }
 
+    @Override
+    public Trainings save(Trainings trainings) {
+        return trainingRepository.save(trainings);
+    }
+
     private List<TrainingsDto> modifyList(List<Trainings> list) {
         if (list == null) {
             return null;
@@ -83,7 +88,7 @@ public class TrainingServiceImpl implements TrainingService {
         ResponseDto<UserDto> responseDto = userFeign.findByUserId(id);
         if ("SUCCESS".equals(responseDto.getMessage())) {
             UserDto user = responseDto.getData();
-            return user.getUserName();
+            return user.getFirstName() + " " + user.getLastName();
         }
         log.error(responseDto.getMessage());
         throw new RuntimeException(responseDto.getMessage());

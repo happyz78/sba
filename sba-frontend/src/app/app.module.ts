@@ -9,12 +9,16 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './component/login/login.component';
 import { SearchComponent } from './component/search/search.component';
 import {JwtInterceptor} from './interceptor/jwt.interceptor';
+import { TrainingsComponent } from './component/trainings/trainings.component';
+import { SingupComponent } from './component/singup/singup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SearchComponent
+    SearchComponent,
+    TrainingsComponent,
+    SingupComponent
   ],
   imports: [
     BrowserModule,
