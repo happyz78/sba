@@ -30,7 +30,7 @@ public class PaymentTask {
     @Autowired
     UserFeign userFeign;
 
-    @Scheduled(cron="*/6 * * * * ?")
+    @Scheduled(cron="* * 1 * * ?")
     private void process() {
         ResponseDto<List<TrainingsDto>> result = trainingFeign.findTrainings(new TrainingsDto());
         List<TrainingsDto> list = null;
