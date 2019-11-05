@@ -45,8 +45,8 @@ public class TrainingServiceImpl implements TrainingService {
     @Override
     public List<TrainingsDto> findTrainings(TrainingsDto trainingsDto) {
         log.error(trainingsDto.toString());
-        List<Trainings> list = trainingRepository.findTrainings(trainingsDto.getSkillId(),
-                trainingsDto.getStartTime(), trainingsDto.getEndTime());
+        //query payed trainings
+        List<Trainings> list = trainingRepository.findByStatus(3);
         List<TrainingsDto> result = modifyList(list);
         return result;
     }
@@ -58,7 +58,7 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Override
     public List<TrainingsDto> findConfirm(TrainingsDto trainingsDto) {
-        List<Trainings> list = trainingRepository.findConfirm(trainingsDto.getUserId(), 0);
+        List<Trainings> list = trainingRepository.findConfirm(trainingsDto.getUserId(), trainingsDto.getStatus());
         List<TrainingsDto> result = modifyList(list);
         return result;
     }

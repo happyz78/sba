@@ -8,12 +8,18 @@ import { SingupComponent } from './component/singup/singup.component';
 import { MentorCalendarComponent } from './component/mentor-calendar/mentor-calendar.component';
 import { MentorAuthGuard } from './guards/mentorAuth.guard';
 import { MentorTrainingComponent } from './component/mentor-training/mentor-training.component';
+import { PaymentConfirmComponent } from './component/payment-confirm/payment-confirm.component';
 
 const routes: Routes = [
   {
     path: 'search',
     // canActivate: [AuthGuard],
     component: SearchComponent
+  },
+  {
+    path: 'paymentConfirm',
+    canActivate: [MentorAuthGuard],
+    component: PaymentConfirmComponent
   },
   {
     path: 'mentorCalendar',

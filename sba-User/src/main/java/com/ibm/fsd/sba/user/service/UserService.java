@@ -18,4 +18,6 @@ public interface UserService {
     MentorSkill saveMentorSkill(MentorSkill mentorSkill);
     List<MentorCalendar> findMentorCalendar(MentorCalendar mentorCalendar);
     MentorCalendar saveMentorCalendar(MentorCalendar mentorCalendar);
+
+    List<MentorSkill> findByUserId(Long id);
 }

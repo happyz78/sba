@@ -78,6 +78,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<MentorSkill> findByUserId(Long id) {
+        return mentorSkillRepository.findByMid(id);
+    }
+
+    @Override
     public Mentor saveMentor(Mentor mentor) {
         return mentorRespository.save(mentor);
     }

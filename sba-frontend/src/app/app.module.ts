@@ -16,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddCalendarComponent } from './component/add-calendar/add-calendar.component';
 import {MatDatepickerModule, MatInputModule,MatNativeDateModule} from '@angular/material';
 import { MentorTrainingComponent } from './component/mentor-training/mentor-training.component';
+import { PaymentConfirmComponent } from './component/payment-confirm/payment-confirm.component';
+import { PaymentComponent } from './component/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { MentorTrainingComponent } from './component/mentor-training/mentor-trai
     SingupComponent,
     MentorCalendarComponent,
     AddCalendarComponent,
-    MentorTrainingComponent
+    MentorTrainingComponent,
+    PaymentConfirmComponent,
+    PaymentComponent
   ],
   imports: [
     MatDialogModule,
@@ -41,6 +45,7 @@ import { MentorTrainingComponent } from './component/mentor-training/mentor-trai
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddCalendarComponent]
+  entryComponents: [AddCalendarComponent,
+    PaymentComponent]
 })
 export class AppModule { }

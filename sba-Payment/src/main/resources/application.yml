@@ -11,7 +11,7 @@ spring:
 server:
   servlet:
     context-path: /paymnet
-  port: 8085
+  port: 8086
   
 eureka:
   client:

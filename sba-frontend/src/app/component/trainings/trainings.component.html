@@ -3,6 +3,7 @@
           <div class="card-body">
             <h5 class="card-title">Opened Trainings 
                 <button type="button" class="float-right btn btn-primary btn-sm" (click)="logout()" style="margin-right: 10px;">Sign Out</button>
+                <button type="button" class="float-right btn btn-primary btn-sm" [routerLink]="['/search']"  style="margin-right: 10px;">Go Back</button>
             </h5>
             <div class="card-text">
     
@@ -34,7 +35,7 @@
                         <td>{{mentor.selfRating}}</td>
                         <td>
                           <button type="button" class="float-center btn btn-info btn-sm" (click)="proposal(item)" *ngIf="checkStatus(item)">Proposal</button>
-                          <button type="button" class="float-center btn btn-info btn-sm" (click)="proposal(item)" *ngIf="!checkStatus(item)">Payment</button>
+                          <button type="button" class="float-center btn btn-info btn-sm" (click)="showPayment(item)" *ngIf="!checkStatus(item)">Payment</button>
                         </td>
                       </tr>
                     </tbody>

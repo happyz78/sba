@@ -13,6 +13,7 @@ import java.util.List;
 public interface TrainingRepository  extends JpaRepository<Trainings, Integer> {
     List<Trainings> findByMentorId(Long id);
     List<Trainings> findByUserId(Long id);
+    List<Trainings> findByStatus(Integer status);
 
     @Query(value = "SELECT t.`ID`," +
             "    t.`USER_ID`," +

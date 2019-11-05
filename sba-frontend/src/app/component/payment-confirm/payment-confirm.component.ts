@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 import { Result } from '../../models/result';
 
 @Component({
-  selector: 'app-mentor-training',
-  templateUrl: './mentor-training.component.html',
-  styleUrls: ['./mentor-training.component.css']
+  selector: 'app-payment-confirm',
+  templateUrl: './payment-confirm.component.html',
+  styleUrls: ['./payment-confirm.component.css']
 })
-export class MentorTrainingComponent implements OnInit {
+export class PaymentConfirmComponent implements OnInit {
   dataFromServer = [];
   constructor(
     private router: Router,
@@ -21,10 +21,11 @@ export class MentorTrainingComponent implements OnInit {
   }
 
   initData() {
+    this.dataFromServer = [];
     const userId = localStorage.getItem('userId');
     const param = {
       userId,
-      status : 0
+      status : 2
     };
     this.http
       .post<Result>(this.authService.basePath + '/training/api/training/v1/findConfirm', param, this.authService.httpOptions)
@@ -32,6 +33,7 @@ export class MentorTrainingComponent implements OnInit {
         console.log(response);
         if (response.code === this.authService.successCode) {
           const data = response.data;
+          console.log(data);
           data.forEach(element => {
             this.dataFromServer.push(element);
           });
@@ -41,10 +43,11 @@ export class MentorTrainingComponent implements OnInit {
 
   confirm(item) {
     console.log(item);
-    item.status = 1;
+    item.status = 3;
     this.http
       .post<Result>(this.authService.basePath + '/training/api/training/v1/save', item, this.authService.httpOptions)
       .subscribe(response => {
+        console.log(response);
         if (response.code === this.authService.successCode) {
           const data = response.data;
           console.log(data);
@@ -52,4 +55,5 @@ export class MentorTrainingComponent implements OnInit {
         }
       });
   }
+
 }

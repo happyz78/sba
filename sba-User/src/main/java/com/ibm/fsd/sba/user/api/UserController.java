@@ -74,6 +74,13 @@ public class UserController {
         return ResponseDto.getSuccessResponseDto(user);
     }
 
+    @PostMapping("/findMentorSkillById")
+    public ResponseDto<List<MentorSkill>> findMentorSkillById(@RequestParam Long id) {
+        log.error(".................." + id);
+        List<MentorSkill> user = userService.findByUserId(id);
+        return ResponseDto.getSuccessResponseDto(user);
+    }
+
     @PostMapping("/findUser")
     public ResponseDto<User> findUser(@RequestBody User user) {
         user = userService.findUser(user);

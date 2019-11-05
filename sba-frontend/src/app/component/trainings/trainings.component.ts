@@ -3,7 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { Result } from '../../models/result';
-
+import { PaymentComponent } from '../payment/payment.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-trainings',
@@ -15,7 +16,8 @@ export class TrainingsComponent implements OnInit {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private matDialog: MatDialog) {
   }
   mentor = {};
   skills = [];
@@ -26,6 +28,7 @@ export class TrainingsComponent implements OnInit {
     this.mentor = JSON.parse(localStorage.getItem('mentor'));
     this.skills = JSON.parse(localStorage.getItem('skills'));
     this.getTrainings();
+    this.getProposalTraings();
   }
 
   getTrainings() {
@@ -48,6 +51,12 @@ export class TrainingsComponent implements OnInit {
           });
         }
       });
+    }
+  getProposalTraings() {
+      const param = {
+        mentorId  : this.mentor['mentor']['userId'],
+        userId : localStorage.getItem('userId')
+      };
 
     this.http
     .post<Result>(this.authService.basePath + '/training/api/training/v1/findTrainingsByUserId',
@@ -57,7 +66,7 @@ export class TrainingsComponent implements OnInit {
       if (response.code === this.authService.successCode) {
         const data = response.data;
         console.log(data);
-        data.forEach(element => {
+        data.forEach((element: any) => {
           this.proposalTraining.push(element);
         });
       }
@@ -93,10 +102,9 @@ export class TrainingsComponent implements OnInit {
           startTime : training['startTime'],
           endTime : training['endTime'],
           };
-          console.log(param);
     this.http
       .post<Result>(this.authService.basePath + '/training/api/training/v1/save',
-      param, this.httpOptions)
+      param, this.authService.httpOptions)
       .subscribe(response => {
         console.log(response);
         if (response.code === this.authService.successCode) {
@@ -107,7 +115,6 @@ export class TrainingsComponent implements OnInit {
   }
 
   checkStatus(item): boolean {
-    console.log(item);
     let flg = true;
     this.proposalTraining.forEach(value => {
       if (value.startTime === item.startTime && value.endTime === item.endTime) {
@@ -115,5 +122,32 @@ export class TrainingsComponent implements OnInit {
       }
     });
     return flg;
+  }
+
+  showPayment(item) {
+    const dialogConfig = new MatDialogConfig();
+    const dialogRef = this.matDialog.open(PaymentComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(value => {
+      if (!value) {
+        return;
+      }
+      let training = {};
+      this.proposalTraining.forEach(itemTraining => {
+        if (itemTraining.startTime === item.startTime && itemTraining.endTime === item.endTime) {
+          training = itemTraining;
+        }
+      });
+
+      training['status'] = 2;
+      this.http
+        .post<Result>(this.authService.basePath + '/training/api/training/v1/save', training, this.authService.httpOptions)
+        .subscribe(response => {
+          if (response.code === this.authService.successCode) {
+            const data = response.data;
+            console.log(data);
+            this.getProposalTraings();
+          }
+        });
+    });
   }
 }
