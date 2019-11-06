@@ -34,7 +34,7 @@ export class TrainingsComponent implements OnInit {
   getTrainings() {
     console.log(this.mentor);
     const param = {
-      mentorId  : this.mentor['mentor']['userId'],
+      mentorId  : this.mentor['mentor']['user']['id'],
       userId : localStorage.getItem('userId')
     };
     console.log(param);
@@ -54,7 +54,7 @@ export class TrainingsComponent implements OnInit {
     }
   getProposalTraings() {
       const param = {
-        mentorId  : this.mentor['mentor']['userId'],
+        mentorId  : this.mentor['mentor']['user']['id'],
         userId : localStorage.getItem('userId')
       };
 
@@ -114,11 +114,12 @@ export class TrainingsComponent implements OnInit {
       });
   }
 
-  checkStatus(item): boolean {
-    let flg = true;
+  checkStatus(item): number {
+    let flg = -1;
+    console.log(item);
     this.proposalTraining.forEach(value => {
       if (value.startTime === item.startTime && value.endTime === item.endTime) {
-        flg = false;
+        flg = value.status;
       }
     });
     return flg;

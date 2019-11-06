@@ -34,8 +34,9 @@
                         <td>{{item.endTime}}</td>
                         <td>{{mentor.selfRating}}</td>
                         <td>
-                          <button type="button" class="float-center btn btn-info btn-sm" (click)="proposal(item)" *ngIf="checkStatus(item)">Proposal</button>
-                          <button type="button" class="float-center btn btn-info btn-sm" (click)="showPayment(item)" *ngIf="!checkStatus(item)">Payment</button>
+                          <button type="button" class="float-center btn btn-info btn-sm" (click)="proposal(item)" *ngIf="checkStatus(item) === -1">Proposal</button>
+                          <button type="button" class="float-center btn btn-info btn-sm" (click)="showPayment(item)" *ngIf="checkStatus(item) === 1">Payment</button>
+                          <button type="button" class="float-center btn btn-info btn-sm" (click)="rateMentor(item)" *ngIf="checkStatus(item) === 3">Rate Mentor</button>
                         </td>
                       </tr>
                     </tbody>

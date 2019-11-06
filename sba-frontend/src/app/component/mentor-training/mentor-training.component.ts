@@ -21,6 +21,7 @@ export class MentorTrainingComponent implements OnInit {
   }
 
   initData() {
+    this.dataFromServer = [];
     const userId = localStorage.getItem('userId');
     const param = {
       userId,

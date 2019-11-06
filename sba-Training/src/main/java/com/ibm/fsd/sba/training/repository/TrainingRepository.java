@@ -67,8 +67,7 @@ public interface TrainingRepository  extends JpaRepository<Trainings, Integer> {
             "    t.`END_TIME`" +
             " FROM Trainings t " +
             " WHERE (t.MENTOR_ID = :mentorId or :mentorId is null)" +
-            " and (t.USER_ID = :userId or :userId is null)" +
-            " and (t.STATUS = 1)",
+            " and (t.USER_ID = :userId or :userId is null)",
             nativeQuery = true)
     List<Trainings> findTrainingByUserId(@Param("userId") Long userId, @Param("mentorId") Long mentorId);
 }

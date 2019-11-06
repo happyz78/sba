@@ -72,7 +72,7 @@
                 <configuration>
                     <baseImage>openjdk:8-jre-alpine</baseImage>
                     <imageName>${docker.image.prefix}.user</imageName>
-                    <exposes>8080</exposes>
+                    <exposes>8082</exposes>
                     <entryPoint>["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
                     <resources>
                         <resource>

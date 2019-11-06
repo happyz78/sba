@@ -100,6 +100,8 @@ export class SearchComponent implements OnInit {
   }
 
   goTraining(item) {
+    console.log('.............................');
+    console.log(item);
     localStorage.setItem('mentor', JSON.stringify(item));
     localStorage.setItem('skills', JSON.stringify(this.skills));
     this.router.navigate(['/trainings']);
