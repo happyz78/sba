@@ -5,24 +5,44 @@ First install mysql
 docker pull mysql
 
 create docker network bridge
+
 docker network create --driver bridge sba_bridge
+
 start mysql docker
+
 docker run -p 3306:3306 --network sba_bridge --name mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+
 import ./schema.sql into mysql database.
 
 
 Build docker file for each mdoel
 
 mvn clean package -pl sba-EurekaServer docker:build
+
+
 mvn clean package -pl sba-Gateway docker:build
+
+
 mvn clean package -pl sba-User docker:build
+
+
 mvn clean package -pl sba-JWTServer docker:build
+
+
 mvn clean package -pl sba-Training docker:build
+
+
 mvn clean package -pl sba-Technology docker:build
+
+
 mvn clean package -pl sba-Search docker:build
+
+
 mvn clean package -pl sba-Payment docker:build
 
+
 Start Eureka docker and other model.
+
 
 docker network create --driver bridge sba_bridge
 docker run -d -p 8761:8761 --network sba_bridge --name=sba.eureka  sba.eureka
