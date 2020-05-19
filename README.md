@@ -1,4 +1,3 @@
-This SBA project is for FSD final assignment.
 
 First install mysql
 
